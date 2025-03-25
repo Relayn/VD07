@@ -1,0 +1,44 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Flask Auth{% endblock %}</title>
+    <!-- Можно подключить Bootstrap (CDN) для красоты -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('home') }}">MySite</a>
+      <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+              {% if current_user.is_authenticated %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('account') }}">Профиль</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('logout') }}">Выход</a>
+                  </li>
+              {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('login') }}">Вход</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('register') }}">Регистрация</a>
+                  </li>
+              {% endif %}
+          </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

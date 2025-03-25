@@ -1,0 +1,41 @@
+# Операционные системные файлы
+.DS_Store
+Thumbs.db
+
+# Python-окружение
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Логи и временные файлы
+*.log
+logs/
+debug.log
+
+# Настройки среды разработки
+.vscode/
+.idea/
+*.swp
+
+# База данных (если используете SQLite)
+instance/
+*.sqlite3
+*.db
+*.db-journal
+
+# Конфиденциальные данные
+.env
+config.py
+*.pem
+*.key
+
+# Кэш Flask
+.cache/
+
+# Файлы, загруженные пользователями
+uploads/
+media/
+static/uploads/
